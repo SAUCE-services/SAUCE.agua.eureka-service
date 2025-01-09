@@ -1,5 +1,5 @@
 app:
-  port: 8761
+  port: ${APP_PORT:8761}
   logging: debug
 
 server:
@@ -24,4 +24,12 @@ logging:
     web: ${app.logging}
     org:
       springframework.cloud.config: ${app.logging}
-      
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
