@@ -20,20 +20,20 @@ def fetch_github_data():
             'closed_at': issue.closed_at.isoformat() if issue.closed_at else None,
             'labels': [label.name for label in issue.labels],
             'milestone': issue.milestone.title if issue.milestone else None,
-            'body': issue.body
+            'body': issue.body or ''
         })
     
     # Obtener milestones
     milestones_data = []
     for milestone in repo.get_milestones(state='all'):
-        milestones_data.append({
+        milestone_data = {
             'title': milestone.title,
-            'description': milestone.description,
+            'description': milestone.description or '',
             'state': milestone.state,
-            'created_at': milestone.created_at.isoformat(),
-            'due_on': milestone.due_on.isoformat() if milestone.due_on else None,
-            'closed_at': milestone.closed_at.isoformat() if milestone.closed_at else None,
-        })
+            'created_at': milestone.created_at.isoformat() if milestone.created_at else None,
+            'due_on': milestone.due_on.isoformat() if milestone.due_on else None
+        }
+        milestones_data.append(milestone_data)
     
     # Guardar datos
     os.makedirs('data', exist_ok=True)
