@@ -14,7 +14,11 @@ def generate_docs():
     issues, milestones = load_data()
     
     # Template para la documentación
-    template_str = """
+    template_str = """---
+layout: default
+title: Documentación Detallada
+---
+
 # Documentación Detallada del Proyecto
 
 _Última actualización: {{ current_date }}_
