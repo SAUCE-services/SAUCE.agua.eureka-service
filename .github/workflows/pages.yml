@@ -1,18 +1,21 @@
 name: Deploy GitHub Pages
 
 on:
+  schedule:
+    - cron: '0 0 * * *'  # Corre diariamente
+  workflow_dispatch:      # Permite ejecutar manualmente
   push:
-    branches: [ "main" ]  # Ajusta esto si tu rama principal tiene otro nombre
-  workflow_dispatch:      # Permite ejecutar el workflow manualmente
+    branches: [ "main" ]  # Solo en la rama principal
+  issues:
+    types: [opened, closed, edited, deleted]
+  milestone:
+    types: [created, closed, edited, deleted]
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  issues: read
 
 jobs:
   build:
@@ -21,30 +24,40 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub markdown2 jinja2
+
+      - name: Fetch Issues and Milestones
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/fetch_github_data.py
+
+      - name: Generate Documentation
+        run: |
+          python scripts/generate_docs.py
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-      
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs
-          destination: ./_site
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-
+        with:
+          path: './docs'
+      
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
