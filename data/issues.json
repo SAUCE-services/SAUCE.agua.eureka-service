@@ -1,0 +1,294 @@
+[
+  {
+    "number": 25,
+    "title": "Implementar un nuevo sistema de documentaci\u00f3n automatizada para el proyecto que sea m\u00e1s eficiente y mantenible.",
+    "state": "open",
+    "created_at": "2025-01-24T15:19:10+00:00",
+    "closed_at": null,
+    "labels": [],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# Objetivo\nImplementar un nuevo sistema de documentaci\u00f3n automatizada para el proyecto que sea m\u00e1s eficiente y mantenible.\n\n## Contexto\nEl sistema anterior de documentaci\u00f3n (generate-docs.yml) ha sido eliminado y necesitamos una soluci\u00f3n actualizada que cumpla con nuestras necesidades actuales.\n\n## Tareas propuestas\n- [ ] Evaluar herramientas de documentaci\u00f3n modernas (MkDocs, Sphinx, VuePress, etc.)\n- [ ] Dise\u00f1ar nueva estructura de documentaci\u00f3n\n- [ ] Crear nuevo workflow de GitHub Actions que:\n  - [ ] Se ejecute en eventos relevantes (push a main, cambios en issues/milestones)\n  - [ ] Genere documentaci\u00f3n actualizada\n  - [ ] Despliegue autom\u00e1ticamente a GitHub Pages\n- [ ] Implementar sistema de versionado de documentaci\u00f3n\n- [ ] Agregar templates para diferentes tipos de documentaci\u00f3n\n- [ ] Incluir validaci\u00f3n de links y formato\n\n## Consideraciones t\u00e9cnicas\n- Debe mantener permisos seguros (GITHUB_TOKEN)\n- Integraci\u00f3n con el sistema actual de issues y milestones\n- Soporte para m\u00faltiples formatos (Markdown, HTML)\n- Optimizaci\u00f3n para SEO\n\n## Criterios de aceptaci\u00f3n\n- [ ] La documentaci\u00f3n se genera autom\u00e1ticamente\n- [ ] El proceso es reproducible localmente\n- [ ] La documentaci\u00f3n es accesible v\u00eda GitHub Pages\n- [ ] El sistema es f\u00e1cil de mantener y actualizar"
+  },
+  {
+    "number": 24,
+    "title": "\ud83d\udd04 Integraci\u00f3n de generaci\u00f3n de docs en workflow de Pages",
+    "state": "closed",
+    "created_at": "2025-01-24T14:43:52+00:00",
+    "closed_at": "2025-01-24T14:44:07+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- refactor(pages): eliminar configuraci\u00f3n de Jekyll\r\n- feat(python): integrar generaci\u00f3n de docs con Python\r\n- feat(triggers): unificar eventos de documentaci\u00f3n\r\n- remove(ruby): eliminar setup y build de Jekyll\r\n- perf(workflow): optimizar proceso de despliegue\r\n- chore(deps): actualizar dependencias necesarias\r\n\r\n# Cambios T\u00e9cnicos\r\nEliminaciones:\r\n- Setup Ruby y Jekyll\r\n- Build Jekyll\r\n- Concurrencia innecesaria\r\n\r\nAdiciones:\r\n- Python 3.11 setup\r\n- Dependencias: PyGithub, markdown2, jinja2\r\n- Scripts de generaci\u00f3n\r\n- Triggers unificados\r\n\r\nOptimizaciones:\r\n- Path directo a /docs\r\n- Permisos simplificados\r\n- Proceso streamlined\r\n\r\n# Testing\r\n- [ ] Generaci\u00f3n de docs\r\n- [ ] Despliegue Pages\r\n- [ ] Triggers funcionando\r\n- [ ] Artefactos correctos\r\n- [ ] URLs accesibles\r\n\r\nCloses #23"
+  },
+  {
+    "number": 23,
+    "title": "Unificaci\u00f3n de Workflows de Documentaci\u00f3n y Pages",
+    "state": "closed",
+    "created_at": "2025-01-24T14:40:59+00:00",
+    "closed_at": "2025-01-24T14:44:09+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83d\udd04 Unificaci\u00f3n de Workflows de Documentaci\u00f3n y Pages\n\n## \ud83d\udcdd Descripci\u00f3n\nIntegraci\u00f3n del proceso de generaci\u00f3n de documentaci\u00f3n directamente en el workflow de GitHub Pages, eliminando la necesidad de Jekyll.\n\n## \ud83d\udd0d Cambios Detallados\n\n### \ud83d\udcca Triggers Unificados\n- Cron diario\n- Workflow dispatch\n- Push a main\n- Eventos de issues\n- Eventos de milestones\n\n### \ud83d\udee0\ufe0f Cambios Estructurales\n1. Eliminaci\u00f3n de Jekyll:\n   - Removido setup de Ruby\n   - Eliminado build de Jekyll\n   - Simplificaci\u00f3n del proceso\n\n2. Integraci\u00f3n Python:\n   - Setup Python 3.11\n   - Instalaci\u00f3n de dependencias\n   - Scripts de generaci\u00f3n\n\n### \u2699\ufe0f Optimizaciones\n- Permisos simplificados\n- Path directo a /docs\n- Proceso de build optimizado\n- Eliminaci\u00f3n de concurrencia innecesaria\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Generaci\u00f3n de docs funcionando\n- [ ] Despliegue en Pages exitoso\n- [ ] Triggers respondiendo correctamente\n- [ ] Documentaci\u00f3n actualizada\n- [ ] Artefactos subidos correctamente\n\n## \ud83d\udd27 Impacto T\u00e9cnico\n- Proceso m\u00e1s eficiente\n- Menor complejidad\n- Mejor mantenibilidad\n- Reducci\u00f3n de dependencias\n\n## \ud83d\udcda Pr\u00f3ximos Pasos\n1. Monitorear rendimiento\n2. Ajustar triggers seg\u00fan necesidad\n3. Optimizar generaci\u00f3n de docs\n4. Mejorar templates\n\n## \ud83d\udd17 Referencias\n- [GitHub Pages Actions](https://github.com/actions/configure-pages)\n- [Python in GitHub Actions](https://docs.github.com/en/actions/using-workflows/using-python-with-github-actions)\n- [GitHub Pages Documentation](https://docs.github.com/en/pages)\n\n## \ud83d\udc65 Asignados\n@DevOps-Team\n@Documentation-Team\n\n## \ud83c\udff7\ufe0f Labels\n`workflow` `optimization` `documentation` `github-pages` `enhancement`"
+  },
+  {
+    "number": 22,
+    "title": "\ud83d\udd04 Actualizaci\u00f3n del workflow para usar Pull Requests autom\u00e1ticos",
+    "state": "closed",
+    "created_at": "2025-01-24T14:33:06+00:00",
+    "closed_at": "2025-01-24T14:33:28+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- feat(workflow): agregar create-pull-request action\r\n- feat(permissions): habilitar pull-requests write\r\n- feat(trigger): agregar push a main como trigger\r\n- refactor(process): eliminar commit directo a main\r\n- docs(pr): configurar template de PR autom\u00e1tico\r\n\r\n# Cambios T\u00e9cnicos\r\nWorkflow:\r\n- Nuevo trigger para push a main\r\n- Permiso pull-requests: write\r\n- Action peter-evans/create-pull-request@v5\r\n\r\nPR Configuration:\r\n- Branch: docs/update-documentation\r\n- Labels: documentation, automated pr\r\n- Delete branch: true\r\n- Skip CI en commits\r\n\r\n# Testing\r\n- [ ] Workflow triggers\r\n- [ ] PR creation\r\n- [ ] Labels aplicados\r\n- [ ] Branch cleanup\r\n- [ ] Documentaci\u00f3n actualizada\r\n\r\nCloses #21"
+  },
+  {
+    "number": 21,
+    "title": "Implementaci\u00f3n de Pull Requests Autom\u00e1ticos para Documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T14:31:20+00:00",
+    "closed_at": "2025-01-24T14:33:30+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83d\udd04 Implementaci\u00f3n de Pull Requests Autom\u00e1ticos para Documentaci\u00f3n\n\n## \ud83d\udcdd Descripci\u00f3n\nModificaci\u00f3n del workflow de documentaci\u00f3n para utilizar Pull Requests autom\u00e1ticos en lugar de commits directos a main.\n\n## \ud83d\udd0d Cambios Detallados\n\n### \ud83d\udd04 Triggers Actualizados\n- Cron diario\n- Workflow dispatch manual\n- Push a main\n- Eventos de issues y milestones\n\n### \ud83d\udee0\ufe0f Cambios en el Workflow\n1. Nuevo permiso:\n   - `pull-requests: write`\n\n2. Implementaci\u00f3n de create-pull-request:\n   - Token de autenticaci\u00f3n\n   - Mensaje de commit estandarizado\n   - T\u00edtulo descriptivo\n   - Cuerpo del PR informativo\n   - Rama temporal\n   - Labels autom\u00e1ticos\n\n### \ud83d\udd00 Proceso de PR\n- Creaci\u00f3n autom\u00e1tica de rama\n- PR contra main\n- Eliminaci\u00f3n autom\u00e1tica post-merge\n- Labels predefinidos\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Workflow ejecut\u00e1ndose correctamente\n- [ ] PRs cre\u00e1ndose autom\u00e1ticamente\n- [ ] Labels aplic\u00e1ndose correctamente\n- [ ] Ramas temporales gestionadas\n- [ ] Documentaci\u00f3n actualiz\u00e1ndose\n\n## \ud83d\udd27 Impacto T\u00e9cnico\n- Cumplimiento de reglas del repositorio\n- Mejor trazabilidad de cambios\n- Proceso de revisi\u00f3n mejorado\n- Automatizaci\u00f3n mantenible\n\n## \ud83d\udcda Pr\u00f3ximos Pasos\n1. Monitorear creaci\u00f3n de PRs\n2. Ajustar templates seg\u00fan feedback\n3. Configurar revisores autom\u00e1ticos\n4. Implementar validaciones adicionales\n\n## \ud83d\udd17 Referencias\n- [Create Pull Request Action](https://github.com/peter-evans/create-pull-request)\n- [GitHub Actions Workflow Syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)\n- [Branch Protection Rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests)\n\n## \ud83d\udc65 Asignados\n@DevOps-Team\n@Documentation-Team\n\n## \ud83c\udff7\ufe0f Labels\n`automation` `documentation` `workflow` `enhancement` `pull-request`"
+  },
+  {
+    "number": 20,
+    "title": "\ud83d\udd12 Fortalecimiento de seguridad en workflow de documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T14:25:21+00:00",
+    "closed_at": "2025-01-24T14:25:36+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- security(permissions): agregar permisos expl\u00edcitos para el workflow\r\n- security(checkout): implementar token expl\u00edcito en checkout\r\n- security(git): configurar fetch-depth completo\r\n- fix(push): especificar rama main en push\r\n- docs(workflow): documentar permisos y seguridad\r\n\r\n# Cambios T\u00e9cnicos\r\nPermisos agregados:\r\n- contents: write\r\n- pages: write\r\n- id-token: write\r\n- issues: read\r\n- pull-requests: read\r\n\r\nMejoras de seguridad:\r\n- Token GITHUB_TOKEN expl\u00edcito\r\n- Fetch depth: 0\r\n- Push espec\u00edfico a main\r\n- Configuraci\u00f3n git mejorada\r\n\r\n# Testing\r\n- [ ] Permisos aplicados\r\n- [ ] Workflow ejecutado\r\n- [ ] Commits autenticados\r\n- [ ] Push exitoso\r\n- [ ] Documentaci\u00f3n actualizada\r\n\r\nCloses #19"
+  },
+  {
+    "number": 19,
+    "title": "Mejora de Seguridad y Permisos en Workflow de Documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T14:23:12+00:00",
+    "closed_at": "2025-01-24T14:25:38+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83d\udd12 Mejora de Seguridad y Permisos en Workflow de Documentaci\u00f3n\n\n## \ud83d\udcdd Descripci\u00f3n\nImplementaci\u00f3n de permisos expl\u00edcitos y mejoras de seguridad en el workflow de generaci\u00f3n de documentaci\u00f3n.\n\n## \ud83d\udd0d Cambios Detallados\n\n### \ud83d\udee1\ufe0f Permisos Expl\u00edcitos\n- `contents: write` - Para operaciones git\n- `pages: write` - Para GitHub Pages\n- `id-token: write` - Para autenticaci\u00f3n\n- `issues: read` - Para acceso a issues\n- `pull-requests: read` - Para futura integraci\u00f3n\n\n### \ud83d\udd10 Mejoras de Seguridad\n1. Token Expl\u00edcito en Checkout\n2. Fetch Depth Completo\n3. Push Espec\u00edfico a Main\n4. Autenticaci\u00f3n Mejorada\n\n### \u2699\ufe0f Optimizaciones de Workflow\n- Checkout m\u00e1s seguro\n- Historia Git completa\n- Commit m\u00e1s espec\u00edfico\n- Push controlado\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Permisos correctamente aplicados\n- [ ] Workflow ejecut\u00e1ndose sin errores\n- [ ] Commits realizados correctamente\n- [ ] Push a main funcionando\n- [ ] Documentaci\u00f3n actualiz\u00e1ndose\n\n## \ud83d\udd27 Impacto T\u00e9cnico\n- Mayor seguridad en operaciones git\n- Mejor control de permisos\n- Trazabilidad mejorada\n- Prevenci\u00f3n de errores de autenticaci\u00f3n\n\n## \ud83d\udea8 Consideraciones de Seguridad\n1. Permisos m\u00ednimos necesarios\n2. Token scope limitado\n3. Acceso controlado\n4. Operaciones git seguras\n\n## \ud83d\udd17 Referencias\n- [GitHub Actions Permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)\n- [Workflow Permissions](https://docs.github.com/en/actions/security-guides/workflow-syntax-for-github-actions#permissions)\n- [Git Security Best Practices](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)\n\n## \ud83d\udc65 Asignados\n@Security-Team\n@DevOps-Team\n\n## \ud83c\udff7\ufe0f Labels\n`security` `workflow` `permissions` `enhancement` `documentation`"
+  },
+  {
+    "number": 18,
+    "title": "\ud83d\udc1b Implementaci\u00f3n de manejo seguro para valores nulos y opcionales",
+    "state": "closed",
+    "created_at": "2025-01-24T14:13:48+00:00",
+    "closed_at": "2025-01-24T14:14:01+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- fix(issues): agregar valor por defecto para body vac\u00edo\r\n- fix(milestones): implementar manejo seguro de fechas nulas\r\n- fix(data): reestructurar objeto milestone\r\n- perf(json): optimizar estructura de datos\r\n- refactor(validation): mejorar manejo de campos opcionales\r\n\r\n# Cambios T\u00e9cnicos\r\nIssues:\r\n- body: valor por defecto ''\r\n- Validaci\u00f3n de campos opcionales\r\n\r\nMilestones:\r\n- description: valor por defecto ''\r\n- created_at: validaci\u00f3n null\r\n- due_on: manejo opcional\r\n- Eliminaci\u00f3n de closed_at redundante\r\n\r\n# Testing\r\n- [ ] Issues sin descripci\u00f3n\r\n- [ ] Milestones sin fechas\r\n- [ ] Generaci\u00f3n de JSON\r\n- [ ] Documentaci\u00f3n completa\r\n- [ ] Manejo de errores\r\n\r\nCloses #17"
+  },
+  {
+    "number": 17,
+    "title": "Mejora en el Manejo de Datos Nulos en Scripts de Documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T14:10:59+00:00",
+    "closed_at": "2025-01-24T14:14:03+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83d\udc1b Mejora en el Manejo de Datos Nulos en Scripts de Documentaci\u00f3n\n\n## \ud83d\udcdd Descripci\u00f3n\nImplementaci\u00f3n de mejoras en el manejo de valores nulos y opcionales en el script de recolecci\u00f3n de datos de GitHub.\n\n## \ud83d\udd0d Detalles del Problema\nEl script actual no maneja adecuadamente casos donde ciertos campos pueden ser nulos, lo que puede causar errores en la generaci\u00f3n de documentaci\u00f3n.\n\n## \ud83d\udee0\ufe0f Cambios Propuestos\n\n### \ud83d\udd04 Manejo de Issues\n- Agregar valor por defecto para `body` vac\u00edo\n- Validaci\u00f3n de campos opcionales\n- Manejo seguro de fechas\n\n### \ud83d\udcca Manejo de Milestones\n- Reestructuraci\u00f3n del objeto milestone\n- Manejo de descripci\u00f3n nula\n- Validaci\u00f3n de fechas opcionales\n- Eliminaci\u00f3n de campos no necesarios\n\n### \u2699\ufe0f Optimizaciones\n- Uso de operador `or` para valores por defecto\n- Validaci\u00f3n de fechas antes de conversi\u00f3n\n- Estructura de datos m\u00e1s limpia\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Manejo de issues sin descripci\u00f3n\n- [ ] Manejo de milestones sin fechas\n- [ ] Generaci\u00f3n correcta de JSON\n- [ ] No errores con datos incompletos\n- [ ] Documentaci\u00f3n generada correctamente\n\n## \ud83d\udd27 Impacto T\u00e9cnico\n- Mejor estabilidad del script\n- Reducci\u00f3n de errores\n- JSON m\u00e1s limpio\n- Documentaci\u00f3n m\u00e1s consistente\n\n## \ud83d\udd17 Referencias\n- [Python None Handling](https://docs.python.org/3/library/stdtypes.html#truth-value-testing)\n- [GitHub API Fields](https://docs.github.com/en/rest/issues/issues)\n- [JSON Best Practices](https://www.json.org/json-en.html)\n\n## \ud83d\udc65 Asignados\n@Backend-Team\n@DevOps-Team\n\n## \ud83c\udff7\ufe0f Labels\n`bug` `python` `documentation` `enhancement` `data-handling`"
+  },
+  {
+    "number": 16,
+    "title": "\ud83e\udd16 Sistema automatizado de documentaci\u00f3n con Python y GitHub Actions",
+    "state": "closed",
+    "created_at": "2025-01-24T14:04:36+00:00",
+    "closed_at": "2025-01-24T14:04:58+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- feat(workflow): crear generate-docs.yml para automatizaci\u00f3n\r\n- feat(python): implementar scripts de generaci\u00f3n de docs\r\n- feat(github): integrar con Issues y Milestones API\r\n- feat(templates): crear sistema de templates con Jinja2\r\n- ci(cron): configurar ejecuci\u00f3n diaria autom\u00e1tica\r\n- ci(triggers): implementar triggers para issues y milestones\r\n- chore(deps): agregar dependencias Python necesarias\r\n- docs(scripts): documentar funcionalidad de scripts\r\n\r\n# Cambios T\u00e9cnicos\r\n- Nuevo workflow generate-docs.yml:\r\n  * Cron diario\r\n  * Triggers de issues/milestones\r\n  * Setup Python 3.11\r\n  * Gesti\u00f3n de dependencias\r\n\r\n- Scripts Python:\r\n  * fetch_github_data.py para API\r\n  * generate_docs.py con Jinja2\r\n  * Estructura de datos JSON\r\n  * Templates markdown\r\n\r\n# Testing\r\n- [ ] Ejecuci\u00f3n de workflow\r\n- [ ] Generaci\u00f3n de JSONs\r\n- [ ] Creaci\u00f3n de markdown\r\n- [ ] Integraci\u00f3n con Pages\r\n- [ ] Permisos y tokens\r\n\r\nCloses #15"
+  },
+  {
+    "number": 15,
+    "title": "Automatizaci\u00f3n de Generaci\u00f3n de Documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T14:02:21+00:00",
+    "closed_at": "2025-01-24T14:05:00+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83e\udd16 Automatizaci\u00f3n de Generaci\u00f3n de Documentaci\u00f3n\n\n## \ud83d\udcdd Descripci\u00f3n\nImplementaci\u00f3n de un sistema automatizado para generar documentaci\u00f3n a partir de issues, milestones y otros datos de GitHub.\n\n## \ud83d\udd0d Caracter\u00edsticas Principales\n\n### \ud83d\udd04 Workflow Automatizado\n- Ejecuci\u00f3n diaria programada\n- Trigger en eventos de issues y milestones\n- Soporte para ejecuci\u00f3n manual\n- Integraci\u00f3n con GitHub Actions\n\n### \ud83d\udc0d Scripts Python\n1. `fetch_github_data.py`:\n   - Recolecci\u00f3n de issues\n   - Obtenci\u00f3n de milestones\n   - Almacenamiento en JSON\n   - Manejo de estados y metadatos\n\n2. `generate_docs.py`:\n   - Generaci\u00f3n de markdown\n   - Templates con Jinja2\n   - Formateo autom\u00e1tico\n   - Estructura jer\u00e1rquica\n\n### \ud83d\udcca Datos Capturados\n- Issues:\n  * N\u00famero y t\u00edtulo\n  * Estado y etiquetas\n  * Fechas de creaci\u00f3n/cierre\n  * Milestone asociado\n  * Contenido completo\n\n- Milestones:\n  * T\u00edtulo y descripci\u00f3n\n  * Estado y fechas\n  * Progreso y m\u00e9tricas\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Workflow ejecut\u00e1ndose correctamente\n- [ ] Scripts Python funcionando\n- [ ] Documentaci\u00f3n gener\u00e1ndose\n- [ ] Permisos GitHub configurados\n- [ ] Estructura de datos correcta\n\n## \ud83d\udd27 Requisitos T\u00e9cnicos\n- Python 3.11\n- Dependencias:\n  * PyGithub\n  * markdown2\n  * jinja2\n- Token de GitHub configurado\n- Permisos de escritura en repo\n\n## \ud83d\udcda Pr\u00f3ximos Pasos\n1. Agregar m\u00e1s templates\n2. Mejorar formato de salida\n3. Incluir estad\u00edsticas\n4. Implementar filtros avanzados\n\n## \ud83d\udd17 Referencias\n- [GitHub API Documentation](https://docs.github.com/en/rest)\n- [PyGithub Documentation](https://pygithub.readthedocs.io/)\n- [Jinja2 Templates](https://jinja.palletsprojects.com/)\n\n## \ud83d\udc65 Asignados\n@DevOps-Team\n@Documentation-Team\n\n## \ud83c\udff7\ufe0f Labels\n`automation` `documentation` `python` `github-actions` `enhancement`"
+  },
+  {
+    "number": 14,
+    "title": "\ud83d\udcda Configuraci\u00f3n de documentaci\u00f3n usando Jekyll y GitHub Pages",
+    "state": "closed",
+    "created_at": "2025-01-24T13:50:03+00:00",
+    "closed_at": "2025-01-24T13:50:21+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- feat(jekyll): configurar tema Cayman y estructura base\r\n- ci(workflow): implementar build de Jekyll\r\n- ci(ruby): agregar configuraci\u00f3n de Ruby 3.1\r\n- docs(content): crear p\u00e1gina de inicio y estructura inicial\r\n- ci(build): separar jobs de build y deploy\r\n- chore(config): agregar _config.yml para Jekyll\r\n\r\n# Cambios T\u00e9cnicos\r\n- Workflow:\r\n  * Configuraci\u00f3n de Ruby 3.1\r\n  * Build con Jekyll\r\n  * Separaci\u00f3n de jobs build/deploy\r\n  * Optimizaci\u00f3n de artefactos\r\n\r\n- Documentaci\u00f3n:\r\n  * _config.yml con tema Cayman\r\n  * index.md con contenido inicial\r\n  * Estructura en /docs\r\n  * Sistema de build Jekyll\r\n\r\n# Testing\r\n- [ ] Build de Jekyll exitoso\r\n- [ ] Tema Cayman aplicado\r\n- [ ] Workflow completo\r\n- [ ] Contenido visible\r\n- [ ] Links funcionales\r\n\r\nCloses #13"
+  },
+  {
+    "number": 13,
+    "title": "Contenido Inicial",
+    "state": "closed",
+    "created_at": "2025-01-24T13:45:07+00:00",
+    "closed_at": "2025-01-24T13:50:22+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "\n### \ud83d\udcd1 Contenido Inicial\n- P\u00e1gina de bienvenida\n- Descripci\u00f3n del servicio\n- Estado del proyecto\n- Estructura de documentaci\u00f3n futura\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Build de Jekyll exitoso\n- [ ] Tema Cayman aplicado correctamente\n- [ ] Workflow completo funcionando\n- [ ] Documentaci\u00f3n visible en GitHub Pages\n- [ ] Enlaces internos funcionando\n\n## \ud83d\udd27 Configuraci\u00f3n Requerida\n1. Ruby 3.1 configurado en el workflow\n2. Jekyll build process establecido\n3. Estructura de directorios `/docs`\n4. Configuraci\u00f3n de tema Cayman\n\n## \ud83d\udcda Pr\u00f3ximos Pasos\n- Expandir documentaci\u00f3n t\u00e9cnica\n- Agregar gu\u00edas de usuario\n- Implementar b\u00fasqueda\n- Mejorar navegaci\u00f3n\n\n## \ud83d\udd17 Referencias\n- [Jekyll Documentation](https://jekyllrb.com/docs/)\n- [GitHub Pages with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)\n- [Cayman Theme](https://github.com/pages-themes/cayman)\n\n## \ud83d\udc65 Asignados\n@Documentation-Team\n@DevOps-Team\n\n## \ud83c\udff7\ufe0f Labels\n`documentation` `jekyll` `github-pages` `enhancement` `setup`"
+  },
+  {
+    "number": 12,
+    "title": "\ud83d\udcc4 Configuraci\u00f3n de despliegue autom\u00e1tico de documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T13:32:57+00:00",
+    "closed_at": "2025-01-24T13:33:14+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "- ci(workflow): crear pipeline para GitHub Pages\r\n- ci(permissions): configurar permisos necesarios\r\n- ci(deploy): implementar steps de despliegue\r\n- ci(security): configurar token de autenticaci\u00f3n\r\n- docs(workflow): documentar proceso de despliegue\r\n\r\n# Cambios T\u00e9cnicos\r\n- Nuevo archivo: .github/workflows/pages.yml\r\n- Configuraci\u00f3n de triggers:\r\n  * Push a main\r\n  * Workflow dispatch manual\r\n- Permisos espec\u00edficos:\r\n  * contents: read\r\n  * pages: write\r\n  * id-token: write\r\n- Steps implementados:\r\n  * Checkout\r\n  * Setup Pages\r\n  * Upload artifact\r\n  * Deploy to Pages\r\n\r\n# Testing\r\n- [ ] Workflow se ejecuta en push a main\r\n- [ ] Artefactos se suben correctamente\r\n- [ ] Despliegue exitoso a Pages\r\n- [ ] URL de Pages accesible\r\n- [ ] Documentaci\u00f3n visible\r\n\r\nCloses #11"
+  },
+  {
+    "number": 11,
+    "title": "Implementaci\u00f3n de GitHub Pages para Documentaci\u00f3n",
+    "state": "closed",
+    "created_at": "2025-01-24T13:30:25+00:00",
+    "closed_at": "2025-01-24T13:33:15+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Armado de Documentaci\u00f3n",
+    "body": "# \ud83d\udcc4 Implementaci\u00f3n de GitHub Pages para Documentaci\u00f3n\n\n## \ud83d\udcdd Descripci\u00f3n\nConfiguraci\u00f3n de un workflow de GitHub Actions para desplegar autom\u00e1ticamente la documentaci\u00f3n del proyecto en GitHub Pages.\n\n## \ud83d\udd0d Detalles de la Implementaci\u00f3n\n\n### \ud83d\udd04 Workflow Configuration\n- Nombre: \"Deploy GitHub Pages\"\n- Trigger: Push a rama main\n- Soporte para ejecuci\u00f3n manual (workflow_dispatch)\n\n### \ud83d\udd12 Permisos Configurados\n- `contents: read`\n- `pages: write`\n- `id-token: write`\n\n### \u2699\ufe0f Caracter\u00edsticas del Workflow\n- Gesti\u00f3n de concurrencia para despliegues\n- Ambiente espec\u00edfico para github-pages\n- URL din\u00e1mica de despliegue\n\n### \ud83d\udee0\ufe0f Steps Implementados\n1. Checkout del c\u00f3digo\n2. Configuraci\u00f3n de Pages\n3. Upload de artefactos\n4. Despliegue a GitHub Pages\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Estructura de directorios `/docs` creada\n- [ ] Permisos de GitHub Pages habilitados\n- [ ] Workflow ejecut\u00e1ndose correctamente\n- [ ] Documentaci\u00f3n desplegada correctamente\n- [ ] URL de Pages accesible\n\n## \ud83d\udd27 Configuraci\u00f3n Requerida\n1. Habilitar GitHub Pages en la configuraci\u00f3n del repositorio\n2. Asegurar que la documentaci\u00f3n est\u00e9 en el directorio `/docs`\n3. Verificar permisos del repositorio\n\n## \ud83d\udcda Pr\u00f3ximos Pasos\n- Generar documentaci\u00f3n inicial\n- Establecer estructura de documentaci\u00f3n\n- Definir proceso de actualizaci\u00f3n\n- Implementar templates de documentaci\u00f3n\n\n## \ud83d\udd17 Referencias\n- [GitHub Pages Documentation](https://docs.github.com/en/pages)\n- [GitHub Actions for GitHub Pages](https://github.com/marketplace/actions/github-pages-action)\n- [Configure GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)\n\n## \ud83d\udc65 Asignados\n@DevOps-Team\n@Documentation-Team\n\n## \ud83c\udff7\ufe0f Labels\n`documentation` `github-pages` `ci-cd` `automation` `enhancement`"
+  },
+  {
+    "number": 10,
+    "title": "\ud83d\udce6 Mejoras en la gesti\u00f3n de dependencias del servidor Eureka",
+    "state": "closed",
+    "created_at": "2025-01-24T11:24:34+00:00",
+    "closed_at": "2025-01-24T11:25:07+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "- chore(deps): actualizar Spring Boot de 3.4.1 a 3.4.2\r\n- feat(validation): agregar Hibernate Validator 9.0.0.CR1\r\n- fix(deps): eliminar commons-logging redundante\r\n- refactor(deps): reorganizar y optimizar dependencias de Spring Cloud\r\n- perf(build): reducir tama\u00f1o del JAR mediante exclusiones\r\n\r\n# Cambios T\u00e9cnicos\r\n- Exclusiones de commons-logging en:\r\n  * spring-cloud-starter-bootstrap\r\n  * spring-cloud-starter-netflix-eureka-server\r\n  * spring-cloud-starter\r\n- Reordenamiento de dependencias en pom.xml\r\n- Actualizaci\u00f3n de versiones core\r\n- Implementaci\u00f3n de validaciones mejoradas\r\n\r\n# Testing\r\n- [ ] Build completo del proyecto\r\n- [ ] Servidor Eureka operativo\r\n- [ ] Registro de servicios\r\n- [ ] Sistema de logs\r\n- [ ] Validaciones de Hibernate\r\n\r\nCloses #9"
+  },
+  {
+    "number": 9,
+    "title": "Optimizaci\u00f3n de Dependencias y Actualizaci\u00f3n de Spring Boot en Eureka Server",
+    "state": "closed",
+    "created_at": "2025-01-24T11:11:57+00:00",
+    "closed_at": "2025-01-24T11:25:09+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "# \ud83d\udce6 Optimizaci\u00f3n de Dependencias y Actualizaci\u00f3n de Spring Boot en Eureka Server\n\n## \ud83d\udcdd Descripci\u00f3n\nActualizaci\u00f3n y optimizaci\u00f3n de las dependencias del servidor Eureka, incluyendo la actualizaci\u00f3n de Spring Boot y la eliminaci\u00f3n de dependencias duplicadas.\n\n## \ud83d\udd0d Cambios Detallados\n\n### \ud83d\udcc8 Actualizaciones Principales\n- Spring Boot actualizado de 3.4.1 a 3.4.2\n- Agregado Hibernate Validator 9.0.0.CR1\n- Optimizaci\u00f3n de dependencias de Spring Cloud\n\n### \ud83e\uddf9 Limpieza de Dependencias\n- Eliminaci\u00f3n de commons-logging redundante\n- Reordenamiento de dependencias\n- Exclusiones espec\u00edficas para evitar conflictos\n\n### \u26a1 Optimizaciones\n- Exclusi\u00f3n de commons-logging en:\n  - spring-cloud-starter-bootstrap\n  - spring-cloud-starter-netflix-eureka-server\n  - spring-cloud-starter\n\n### \u2795 Nuevas Dependencias\n- Hibernate Validator 9.0.0.CR1 para validaci\u00f3n mejorada\n\n## \u2705 Checklist de Verificaci\u00f3n\n- [ ] Build exitoso del proyecto\n- [ ] Funcionamiento correcto del servidor Eureka\n- [ ] Registro de servicios sin errores\n- [ ] Validaciones funcionando correctamente\n- [ ] Logs apropiados sin duplicados\n\n## \ud83d\udd27 Impacto T\u00e9cnico\n- Reducci\u00f3n del tama\u00f1o del JAR\n- Mejora en el manejo de logs\n- Optimizaci\u00f3n de validaciones\n- Actualizaci\u00f3n de seguridad\n\n## \ud83d\udd17 Referencias\n- [Spring Boot 3.4.2 Release Notes](https://github.com/spring-projects/spring-boot/releases/tag/v3.4.2)\n- [Hibernate Validator Documentation](https://hibernate.org/validator/)\n- [Spring Cloud Dependencies](https://spring.io/projects/spring-cloud)\n\n## \ud83d\udc65 Asignados\n@DevOps-Team\n@Backend-Team\n\n## \ud83c\udff7\ufe0f Labels\n`dependencies` `optimization` `spring-boot` `eureka` `enhancement`"
+  },
+  {
+    "number": 8,
+    "title": "Update README.md",
+    "state": "closed",
+    "created_at": "2025-01-09T08:56:23+00:00",
+    "closed_at": "2025-01-09T08:56:51+00:00",
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": ""
+  },
+  {
+    "number": 7,
+    "title": "Mejoras significativas en el workflow de CI/CD",
+    "state": "closed",
+    "created_at": "2025-01-09T08:52:44+00:00",
+    "closed_at": "2025-01-09T08:54:35+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "- ci(workflow): agregar condici\u00f3n para ejecutar solo en rama main\r\n- ci(security): migrar credenciales a secrets de GitHub\r\n- ci(docker): implementar versionado din\u00e1mico basado en fecha\r\n- ci(maven): optimizar proceso de build y verificaci\u00f3n\r\n- ci(cache): mejorar configuraci\u00f3n de cache de Maven\r\n- security: proteger variables sensibles usando secrets\r\n\r\n# Cambios T\u00e9cnicos\r\n- Nuevo formato de versi\u00f3n: v{a\u00f1o}.{mes}.{d\u00eda}-build{n\u00famero}\r\n- Comando Maven actualizado a: clean verify install\r\n- Implementaci\u00f3n de ${{ secrets.DOCKER_IMAGE_NAME }}\r\n- Optimizaci\u00f3n de steps en workflow\r\n- Mejora en la gesti\u00f3n de tags de Docker\r\n\r\n# Testing\r\n- [x] Build exitoso en rama main\r\n- [x] Push correcto a Docker Hub\r\n- [x] Verificaci\u00f3n de formato de versiones\r\n- [x] Validaci\u00f3n de secrets\r\n- [x] Funcionamiento del cache de Maven\r\n\r\nCloses #6"
+  },
+  {
+    "number": 6,
+    "title": "Mejora del Workflow de GitHub Actions para CI/CD",
+    "state": "closed",
+    "created_at": "2025-01-09T08:45:51+00:00",
+    "closed_at": "2025-01-09T08:54:37+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "# \ud83d\udd04 Mejora del Workflow de GitHub Actions para CI/CD\r\n\r\n## \ud83d\udcdd Descripci\u00f3n\r\nActualizaci\u00f3n del pipeline de CI/CD para mejorar la seguridad, eficiencia y manejo de versiones en el proceso de build y despliegue de la imagen Docker.\r\n\r\n## \ud83d\udd0d Cambios Detallados\r\n\r\n### \ud83d\udd12 Seguridad y Control\r\n- Agregada condici\u00f3n para ejecutar solo en rama main\r\n- Migraci\u00f3n de credenciales a secrets\r\n- Imagen Docker configurada mediante variables de entorno seguras\r\n\r\n### \ud83d\udce6 Mejoras en el Build\r\n- Actualizado el comando Maven para incluir verificaci\u00f3n\r\n- Implementado nuevo sistema de versionado din\u00e1mico\r\n- Optimizaci\u00f3n del cache de Maven\r\n\r\n### \ud83c\udff7\ufe0f Sistema de Versionado\r\n- Nuevo formato: `v{a\u00f1o}.{mes}.{d\u00eda}-build{n\u00famero}`\r\n- Mantiene tags `latest` y espec\u00edficos de commit\r\n- Versi\u00f3n din\u00e1mica basada en fecha y n\u00famero de build\r\n\r\n## \u2705 Checklist de Verificaci\u00f3n\r\n- [ ] Verificar acceso a secrets en GitHub\r\n- [ ] Probar build en rama main\r\n- [ ] Validar formato de versiones generadas\r\n- [ ] Comprobar push a Docker Hub\r\n- [ ] Verificar cache de Maven\r\n\r\n## \ud83d\udd27 Configuraci\u00f3n Requerida\r\nAgregar los siguientes secrets en GitHub:\r\n- `DOCKER_IMAGE_NAME`\r\n- `DOCKER_USERNAME`\r\n- `DOCKER_PASSWORD`\r\n\r\n## \ud83d\udccb Ejemplo de Versi\u00f3n Generada\r\n\r\n```bash\r\nv2024.03.14-build42\r\n```\r\n\r\n\r\n## \ud83d\udd17 Referencias\r\n- [GitHub Actions Documentation](https://docs.github.com/en/actions)\r\n- [Docker Build Push Action](https://github.com/marketplace/actions/docker-build-push-action)\r\n- [Maven GitHub Actions](https://github.com/marketplace/actions/setup-java-jdk)\r\n\r\n## \ud83d\udc65 Asignados\r\n@DevOps-Team\r\n@CI-CD-Team\r\n\r\n## \ud83c\udff7\ufe0f Labels\r\n`ci-cd` `github-actions` `docker` `security` `enhancement`"
+  },
+  {
+    "number": 5,
+    "title": "\ud83d\udd28 BREAKING CHANGE: Actualizaci\u00f3n mayor de Spring Boot y Spring Cloud",
+    "state": "closed",
+    "created_at": "2025-01-09T08:39:27+00:00",
+    "closed_at": "2025-01-09T08:40:14+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "- feat(docker): cambiar de JDK a JRE para optimizar tama\u00f1o de imagen\r\n- feat(docker): agregar soporte para curl en im\u00e1genes Docker\r\n- feat(deps): actualizar Spring Boot de 3.3.1 a 3.4.1\r\n- feat(deps): actualizar Spring Cloud a 2024.0.0\r\n- feat(config): hacer configurable el puerto via APP_PORT\r\n- feat(monitoring): agregar endpoints de actuator\r\n- chore(docker): optimizar cache de Maven en build local\r\n- docs(docker): mejorar documentaci\u00f3n en Dockerfiles\r\n\r\n# Cambios T\u00e9cnicos\r\n- Dockerfile: eclipse-temurin:21-jdk-alpine \u2192 eclipse-temurin:21-jre-alpine\r\n- Dockerfile.local: maven:3.9.8 \u2192 maven:3\r\n- pom.xml: actualizaci\u00f3n de versiones core\r\n- bootstrap.yml: configuraci\u00f3n de variables de entorno y monitoring\r\n\r\n# Testing\r\n- [x] Build de imagen Docker exitoso\r\n- [x] Pruebas de conectividad con nuevo JRE\r\n- [x] Validaci\u00f3n de endpoints de actuator\r\n- [x] Verificaci\u00f3n de puerto configurable\r\n- [x] Compatibilidad con nuevas versiones de Spring\r\n\r\nCloses #4"
+  },
+  {
+    "number": 4,
+    "title": "Actualizaci\u00f3n de Dependencias y Mejoras en la Configuraci\u00f3n del Servidor Eureka",
+    "state": "closed",
+    "created_at": "2025-01-09T08:35:37+00:00",
+    "closed_at": "2025-01-09T08:40:16+00:00",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "body": "# \ud83d\udd04 Actualizaci\u00f3n de Dependencias y Mejoras en la Configuraci\u00f3n del Servidor Eureka\r\n\r\n## \ud83d\udcdd Descripci\u00f3n\r\nSe han realizado m\u00faltiples actualizaciones en la configuraci\u00f3n del servidor Eureka, incluyendo optimizaciones en los Dockerfiles, actualizaci\u00f3n de dependencias y mejoras en la configuraci\u00f3n de monitoreo.\r\n\r\n## \ud83d\udd0d Cambios Realizados\r\n\r\n### \ud83d\udce6 Actualizaciones de Dockerfile\r\n- Cambio de `eclipse-temurin:21-jdk-alpine` a `eclipse-temurin:21-jre-alpine` para optimizar el tama\u00f1o de la imagen\r\n- Agregado soporte para curl en las im\u00e1genes Docker\r\n- Mejora en la estructura y documentaci\u00f3n de los Dockerfiles\r\n- Optimizaci\u00f3n del Dockerfile.local con cache de Maven\r\n\r\n### \ud83d\udcda Actualizaciones de Dependencias\r\n- Spring Boot actualizado de 3.3.1 a 3.4.1\r\n- Spring Cloud actualizado a versi\u00f3n 2024.0.0\r\n- Maven actualizado a versi\u00f3n 3 en Dockerfile.local\r\n\r\n### \u2699\ufe0f Cambios en Configuraci\u00f3n\r\n- Puerto de la aplicaci\u00f3n ahora configurable mediante variable de entorno `APP_PORT`\r\n- Agregados endpoints de actuator para monitoreo\r\n- Configuraci\u00f3n de health check detallado\r\n- Exposici\u00f3n de todos los endpoints de management\r\n\r\n## \u2705 Checklist de Verificaci\u00f3n\r\n- [ ] Probar el build de la imagen Docker\r\n- [ ] Verificar el funcionamiento con el nuevo JRE\r\n- [ ] Comprobar la conectividad de los endpoints de actuator\r\n- [ ] Validar la configuraci\u00f3n del puerto din\u00e1mico\r\n- [ ] Verificar la compatibilidad con las nuevas versiones de Spring\r\n\r\n## \ud83d\udd17 Referencias\r\n- [Spring Boot 3.4.1 Release Notes](https://github.com/spring-projects/spring-boot/releases/tag/v3.4.1)\r\n- [Spring Cloud 2024.0.0 Documentation](https://spring.io/projects/spring-cloud)\r\n- [Eclipse Temurin Docker Images](https://hub.docker.com/_/eclipse-temurin)\r\n\r\n## \ud83d\udc65 Asignados\r\n@DevOps-Team\r\n@Java-Team\r\n\r\n## \ud83c\udff7\ufe0f Labels\r\n`enhancement` `dependencies` `docker` `configuration` `spring-cloud`"
+  },
+  {
+    "number": 3,
+    "title": "Fixing Actions",
+    "state": "closed",
+    "created_at": "2024-07-18T08:11:05+00:00",
+    "closed_at": "2024-07-18T08:11:13+00:00",
+    "labels": [],
+    "milestone": null,
+    "body": ""
+  },
+  {
+    "number": 2,
+    "title": "Running Eureka Server",
+    "state": "closed",
+    "created_at": "2024-07-18T08:05:12+00:00",
+    "closed_at": "2024-07-18T08:05:20+00:00",
+    "labels": [],
+    "milestone": null,
+    "body": ""
+  },
+  {
+    "number": 1,
+    "title": "Create maven.yml",
+    "state": "closed",
+    "created_at": "2024-07-05T12:23:37+00:00",
+    "closed_at": "2024-07-05T12:23:44+00:00",
+    "labels": [],
+    "milestone": null,
+    "body": ""
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua",
+    "description": "# Milestone: Implementaci\u00f3n de Spring Cloud en Sistema de Facturaci\u00f3n de Agua\r\n\r\n## \ud83c\udfaf Objetivo\r\nImplementar una arquitectura de microservicios utilizando Spring Cloud para un sistema de facturaci\u00f3n de agua, mejorando la escalabilidad, resiliencia y mantenibilidad del sistema.\r\n\r\n## \ud83d\udccb Entregables\r\n\r\n### Fase 1: Configuraci\u00f3n Base\r\n- [ ] Configurar repositorio Git para centralizar configuraciones\r\n- [ ] Establecer Spring Cloud Netflix Eureka como servidor de registro y descubrimiento\r\n- [ ] Configurar Spring Cloud Gateway como punto de entrada \u00fanico\r\n\r\n### Fase 2: Microservicios Core\r\n- [ ] Microservicio de Medidores\r\n  - Registro de medidores\r\n  - Gesti\u00f3n de lecturas\r\n  - Validaci\u00f3n de consumos\r\n- [ ] Microservicio de Facturaci\u00f3n\r\n  - C\u00e1lculo de consumo\r\n  - Generaci\u00f3n de facturas\r\n  - Aplicaci\u00f3n de tarifas\r\n\r\n### Fase 3: Resiliencia y Monitoreo\r\n- [ ] Implementar Circuit Breaker con Resilience4j\r\n- [ ] Configurar Spring Cloud Sleuth para trazabilidad\r\n- [ ] Integrar Zipkin para seguimiento distribuido\r\n- [ ] Implementar monitoreo con Spring Boot Admin\r\n\r\n### Fase 4: Seguridad\r\n- [ ] Implementar OAuth2/JWT para autenticaci\u00f3n\r\n- [ ] Configurar Spring Security en Gateway\r\n- [ ] Establecer pol\u00edticas de seguridad por microservicio\r\n- [ ] Implementar SSL/TLS\r\n\r\n## \ud83d\udee0 Tecnolog\u00edas Clave\r\n- Spring Cloud Config\r\n- Spring Cloud Netflix Eureka\r\n- Spring Cloud Gateway\r\n- Spring Cloud Circuit Breaker\r\n- Spring Cloud Sleuth\r\n- Spring Boot Admin\r\n- Docker\r\n\r\n## \ud83d\udcca M\u00e9tricas de \u00c9xito\r\n- Tiempo de respuesta < 500ms para el 95% de las peticiones\r\n- Disponibilidad del sistema > 99.9%\r\n- Capacidad de procesamiento de 1000 facturas/minuto\r\n- Zero-downtime durante actualizaciones\r\n\r\n## \ud83d\udd0d Criterios de Aceptaci\u00f3n\r\n1. Todos los microservicios deben registrarse correctamente en Eureka\r\n2. Las configuraciones deben actualizarse sin reinicio de servicios\r\n3. El sistema debe manejar fallos gracefully con Circuit Breaker\r\n4. Trazabilidad completa de las transacciones\r\n5. Autenticaci\u00f3n y autorizaci\u00f3n funcionando en todos los endpoints\r\n\r\n## \ud83d\udea8 Riesgos y Mitigaci\u00f3n\r\n- **Riesgo**: Alta latencia entre servicios\r\n  - *Mitigaci\u00f3n*: Implementar cach\u00e9 y optimizar comunicaci\u00f3n\r\n- **Riesgo**: P\u00e9rdida de datos en fallos\r\n  - *Mitigaci\u00f3n*: Implementar persistencia distribuida\r\n- **Riesgo**: Sobrecarga del sistema\r\n  - *Mitigaci\u00f3n*: Configurar auto-scaling y load balancing",
+    "state": "open",
+    "created_at": "2025-01-09T08:33:01+00:00",
+    "due_on": null
+  },
+  {
+    "title": "Armado de Documentaci\u00f3n",
+    "description": "Implementaci\u00f3n de infraestructura y contexto para publicar la documentaci\u00f3n",
+    "state": "open",
+    "created_at": "2025-01-24T13:29:45+00:00",
+    "due_on": null
+  }
+]
