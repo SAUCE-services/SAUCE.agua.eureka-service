@@ -15,27 +15,52 @@ def generate_docs():
     
     # Template para la documentación
     template_str = """
-# Documentación del Proyecto
+# Documentación Detallada del Proyecto
 
-Última actualización: {{ current_date }}
+_Última actualización: {{ current_date }}_
 
-## Milestones
+## Resumen de Milestones
+
+| Milestone | Estado | Fecha Límite |
+|-----------|--------|--------------|
+{% for milestone in milestones %}
+| {{ milestone.title }} | {{ milestone.state }} | {{ milestone.due_on if milestone.due_on else 'No definida' }} |
+{% endfor %}
+
+## Detalles de Milestones
 
 {% for milestone in milestones %}
 ### {{ milestone.title }}
-- Estado: {{ milestone.state }}
-- Descripción: {{ milestone.description }}
-{% if milestone.due_on %}- Fecha límite: {{ milestone.due_on }}{% endif %}
+**Estado:** {{ milestone.state }}
+**Descripción:** {{ milestone.description }}
+{% if milestone.due_on %}**Fecha límite:** {{ milestone.due_on }}{% endif %}
+
+---
 {% endfor %}
 
-## Issues
+## Issues Activos
 
-{% for issue in issues %}
+{% for issue in issues if issue.state == 'open' %}
 ### #{{ issue.number }}: {{ issue.title }}
-- Estado: {{ issue.state }}
-- Creado: {{ issue.created_at }}
-{% if issue.milestone %}- Milestone: {{ issue.milestone }}{% endif %}
-{% if issue.labels %}- Labels: {{ issue.labels|join(', ') }}{% endif %}
+**Estado:** {{ issue.state }}
+**Creado:** {{ issue.created_at }}
+{% if issue.milestone %}**Milestone:** {{ issue.milestone }}{% endif %}
+{% if issue.labels %}**Labels:** {{ issue.labels|join(', ') }}{% endif %}
+
+{{ issue.body }}
+
+---
+{% endfor %}
+
+## Issues Cerrados
+
+{% for issue in issues if issue.state == 'closed' %}
+### #{{ issue.number }}: {{ issue.title }}
+**Estado:** {{ issue.state }}
+**Creado:** {{ issue.created_at }}
+**Cerrado:** {{ issue.closed_at }}
+{% if issue.milestone %}**Milestone:** {{ issue.milestone }}{% endif %}
+{% if issue.labels %}**Labels:** {{ issue.labels|join(', ') }}{% endif %}
 
 {{ issue.body }}
 
