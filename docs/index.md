@@ -6,13 +6,18 @@ Bienvenido a la documentación del servicio Eureka de SAUCE Agua.
 
 Este es el servidor de descubrimiento de servicios (Eureka Server) para la arquitectura de microservicios de SAUCE Agua.
 
+## Navegación
+
+- [Documentación Detallada del Proyecto](project-documentation.html) - Documentación generada automáticamente con:
+  - Estado actual de los Milestones
+  - Lista de Issues activos y cerrados
+  - Historial de cambios
+
 ## Estado del Proyecto
 
-[Estado actual del proyecto y próximos pasos]
+El estado actual del proyecto y sus avances se pueden consultar en la [Documentación Detallada](project-documentation.html).
 
-## Documentación
+## Enlaces Útiles
 
-La documentación se generará automáticamente a partir de:
-- Issues de GitHub
-- Milestones
-- Wiki del proyecto 
+- [Repositorio en GitHub](https://github.com/SAUCE-services/SAUCE.agua.eureka-service)
+- [Wiki del Proyecto](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/wiki) 
