@@ -9,12 +9,23 @@ on:
   milestone:
     types: [created, closed, edited, deleted]
 
+# Agregamos permisos explícitos
+permissions:
+  contents: write       # Para poder hacer push
+  pages: write         # Para GitHub Pages
+  id-token: write      # Para autenticación
+  issues: read         # Para leer issues
+  pull-requests: read  # Por si necesitamos PRs en el futuro
+
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Token explícito
+          fetch-depth: 0  # Historia completa para commits
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -41,4 +52,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update documentation [skip ci]" && git push) 
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update documentation [skip ci]" && git push origin HEAD:main) 
