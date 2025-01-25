@@ -47,6 +47,15 @@ def run_git_command(cmd, error_msg=None, check=True):
             raise WikiGenerationError(f"Error ejecutando Git: {str(e)}")
         raise
 
+def verify_token():
+    """Verificar que el token existe y tiene el formato correcto"""
+    token = os.environ.get('GITHUB_TOKEN')
+    if not token:
+        raise WikiGenerationError("GITHUB_TOKEN no encontrado en variables de entorno")
+    if not token.strip():
+        raise WikiGenerationError("GITHUB_TOKEN está vacío")
+    return token
+
 def generate_wiki_pages():
     # Guardar directorio original y asegurar paths absolutos
     original_dir = Path.cwd().absolute()
@@ -63,17 +72,18 @@ def generate_wiki_pages():
         raise WikiGenerationError(f"Directorio de datos no encontrado: {data_dir}")
     
     try:
+        token = verify_token()
         # Limpiar directorio wiki si existe
         if wiki_dir.exists():
             safe_cleanup(wiki_dir)
         
         # Configuración
-        token = os.environ['GITHUB_TOKEN']
         repo = os.environ['GITHUB_REPOSITORY']
         api_url = f"https://api.github.com/repos/{repo}"
         headers = {
             'Authorization': f'Bearer {token}',
-            'Accept': 'application/vnd.github.v3+json,application/vnd.github.mercy-preview+json'
+            'Accept': 'application/vnd.github.v3+json,application/vnd.github.mercy-preview+json',
+            'X-GitHub-Api-Version': '2022-11-28'  # Especificar versión de API
         }
 
         # Verificar acceso y permisos en una sola llamada
@@ -278,29 +288,34 @@ def safe_cleanup(directory):
 
 def check_repo_access(api_url, headers):
     """Verificar acceso al repositorio y sus características"""
-    response = requests.get(api_url, headers=headers)
-    if response.status_code != 200:
-        raise WikiGenerationError(f"No se puede acceder al repositorio: {response.status_code}")
-    
-    repo_data = response.json()
-    if repo_data.get('archived'):
-        raise WikiGenerationError("El repositorio está archivado")
-    if repo_data.get('disabled'):
-        raise WikiGenerationError("El repositorio está deshabilitado")
-    
-    # Verificar permisos específicos para wiki
-    permissions = repo_data.get('permissions', {})
-    if not permissions.get('push'):
-        raise WikiGenerationError("El token no tiene permisos de escritura")
-    if not permissions.get('pull'):
-        raise WikiGenerationError("El token no tiene permisos de lectura")
-    
-    # Verificar que la wiki está habilitada o se puede habilitar
-    if not repo_data.get('has_wiki') and not permissions.get('admin'):
-        raise WikiGenerationError("La wiki está deshabilitada y el token no tiene permisos para habilitarla")
-    
-    print("Token verificado con todos los permisos necesarios")
-    return repo_data
+    try:
+        response = requests.get(api_url, headers=headers)
+        response.raise_for_status()  # Lanzar excepción para códigos de error HTTP
+        
+        repo_data = response.json()
+        
+        # Verificar permisos específicos para wiki
+        permissions = repo_data.get('permissions', {})
+        
+        # Verificar todos los permisos necesarios
+        if not permissions.get('push'):
+            print("Permisos actuales:", permissions)  # Debug
+            raise WikiGenerationError("El token no tiene permisos de escritura")
+        if not permissions.get('pull'):
+            raise WikiGenerationError("El token no tiene permisos de lectura")
+        if not repo_data.get('has_wiki') and not permissions.get('admin'):
+            raise WikiGenerationError("La wiki está deshabilitada y el token no tiene permisos para habilitarla")
+        
+        return repo_data
+    except requests.exceptions.RequestException as e:
+        if response.status_code == 401:
+            raise WikiGenerationError("Token inválido o expirado")
+        elif response.status_code == 403:
+            raise WikiGenerationError("Token sin permisos suficientes")
+        elif response.status_code == 404:
+            raise WikiGenerationError("Repositorio no encontrado")
+        else:
+            raise WikiGenerationError(f"Error de API: {str(e)}")
 
 if __name__ == '__main__':
     generate_wiki_pages() 

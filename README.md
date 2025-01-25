@@ -25,3 +25,17 @@ Este servicio actúa como servidor de registro y descubrimiento para los microse
 - Java 21
 
 [![SAUCE.agua.eureka-service CI](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml/badge.svg)](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml)
+
+## Configuración
+
+### Permisos Necesarios
+Para que la generación automática de la wiki funcione, asegúrate de que:
+
+1. El token tiene los siguientes permisos:
+   - `repo` (acceso completo al repositorio)
+   - `workflow` (para GitHub Actions)
+   - `write:packages` (para operaciones de escritura)
+
+2. La wiki está habilitada en la configuración del repositorio
+
+3. El workflow tiene los permisos necesarios configurados
