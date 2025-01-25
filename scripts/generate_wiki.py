@@ -256,7 +256,13 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
                 f.write(f"**Creado:** {issue['created_at']}\n")
                 f.write(f"**Cerrado:** {issue.get('closed_at', 'Desconocido')}\n\n")
                 if issue.get('milestone'):
-                    f.write(f"**Milestone:** {issue['milestone'].get('title', 'Sin título')}\n\n")
+                    # Si milestone es un diccionario
+                    if isinstance(issue['milestone'], dict):
+                        milestone_title = issue['milestone'].get('title', 'Sin título')
+                    # Si milestone es un string
+                    else:
+                        milestone_title = issue['milestone']
+                    f.write(f"**Milestone:** {milestone_title}\n\n")
                 if issue.get('labels'):
                     labels = [label.get('name', '') for label in issue['labels']]
                     f.write(f"**Labels:** {', '.join(filter(None, labels))}\n\n")
