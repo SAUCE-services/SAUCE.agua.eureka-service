@@ -17,9 +17,12 @@ permissions:
   pages: write          # Para GitHub Pages
   id-token: write       # Para autenticación
   issues: read          # Para leer issues
+  pull-requests: write  # Para PR y merge
+  repository-projects: write
   actions: read         # Para acceder a las acciones
   deployments: write    # Para despliegues
   statuses: write       # Para actualizar estados
+  wiki: write          # Específicamente para la wiki
 
 jobs:
   build:
