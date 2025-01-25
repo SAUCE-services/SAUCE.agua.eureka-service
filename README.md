@@ -4,7 +4,8 @@ Servidor de descubrimiento de servicios (Eureka Server) para la arquitectura de 
 
 ## Documentación
 
-La documentación completa del proyecto está disponible en: [SAUCE Agua Eureka Service Documentation](https://sauce-services.github.io/SAUCE.agua.eureka-service/)
+- **Documentación Técnica**: [SAUCE Agua Eureka Service Documentation](https://sauce-services.github.io/SAUCE.agua.eureka-service/)
+- **Wiki del Proyecto**: [SAUCE Agua Eureka Service Wiki](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/wiki)
 
 ## Estado del Proyecto
 
@@ -24,6 +25,7 @@ Este servicio actúa como servidor de registro y descubrimiento para los microse
 - Spring Cloud Netflix Eureka Server
 - Java 21
 
+## Estado de Integración Continua
 [![SAUCE.agua.eureka-service CI](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml/badge.svg)](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml)
 
 ## Configuración
