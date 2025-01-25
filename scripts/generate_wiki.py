@@ -26,23 +26,48 @@ def generate_wiki_pages():
         'Accept': 'application/vnd.github.v3+json'
     }
 
-    # Verificar y habilitar wiki
+    # Verificar y habilitar wiki con los permisos correctos
     print("Verificando estado de la wiki...")
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
         repo_data = response.json()
-        if not repo_data.get('has_wiki'):
-            print("Habilitando wiki...")
-            response = requests.patch(api_url, headers=headers, json={'has_wiki': True})
-            if response.status_code != 200:
-                print(f"Error habilitando wiki: {response.status_code}")
-                return
+        wiki_config = {
+            'has_wiki': True,
+            'allow_squash_merge': True,  # Necesario para algunos permisos
+            'allow_merge_commit': True
+        }
+        print("Configurando wiki y permisos...")
+        response = requests.patch(api_url, headers=headers, json=wiki_config)
+        if response.status_code != 200:
+            print(f"Error configurando wiki: {response.status_code}")
+            print(response.text)
+            return
+            
+        # Configurar permisos de la wiki
+        wiki_permission_url = f"{api_url}/collaborators/github-actions[bot]"
+        permission_data = {
+            'permission': 'maintain'  # Dar permisos de mantenedor al bot
+        }
+        perm_response = requests.put(
+            wiki_permission_url, 
+            headers=headers, 
+            json=permission_data
+        )
+        print(f"Configuración de permisos: {perm_response.status_code}")
+        if perm_response.status_code not in [201, 204]:
+            print(f"Error configurando permisos: {perm_response.text}")
     else:
         print(f"Error verificando repositorio: {response.status_code}")
         return
 
+    # Verificar permisos finales
+    permissions_url = f"{api_url}/collaborators/github-actions[bot]/permission"
+    perm_check = requests.get(permissions_url, headers=headers)
+    print(f"Permisos actuales: {perm_check.json() if perm_check.status_code == 200 else 'No se pudo verificar'}")
+
     # URL para git con autenticación
     wiki_url = f"https://x-access-token:{token}@github.com/{repo}.wiki.git"
+    print(f"Verificando acceso a la wiki...")
     
     try:
         # Configurar git
