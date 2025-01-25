@@ -13,15 +13,18 @@ on:
 
 # Corregimos la sintaxis de los permisos
 permissions:
-  contents: write        # Para actualizar archivos y wiki
-  pages: write          # Para GitHub Pages
-  id-token: write       # Para autenticación
+  contents: write    # Para repo y wiki
+  pages: write      # Para GitHub Pages
+  id-token: write   # Para autenticación
   issues: read          # Para leer issues
   pull-requests: write  # Para PR y merge
   repository-projects: write
   actions: read         # Para acceder a las acciones
   deployments: write    # Para despliegues
   statuses: write       # Para actualizar estados
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
