@@ -227,6 +227,21 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
                 f.write("---\n\n")
 
         # Issues-Activos.md
+        def format_labels(labels_data):
+            """Formatear labels considerando diferentes formatos posibles"""
+            if not labels_data:
+                return []
+            if isinstance(labels_data, list):
+                # Si es una lista de diccionarios
+                if all(isinstance(label, dict) for label in labels_data):
+                    return [label.get('name', '') for label in labels_data]
+                # Si es una lista de strings
+                return labels_data
+            # Si es un string único
+            if isinstance(labels_data, str):
+                return [labels_data]
+            return []
+
         active_issues = [i for i in issues if i['state'] == 'open']
         with open(wiki_dir / 'Issues-Activos.md', 'w', encoding='utf-8') as f:
             f.write("# Issues Activos\n\n")
@@ -242,8 +257,9 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
                         milestone_title = issue['milestone']
                     f.write(f"**Milestone:** {milestone_title}\n\n")
                 if issue.get('labels'):
-                    labels = [label.get('name', '') for label in issue['labels']]
-                    f.write(f"**Labels:** {', '.join(filter(None, labels))}\n\n")
+                    labels = format_labels(issue['labels'])
+                    if labels:
+                        f.write(f"**Labels:** {', '.join(labels)}\n\n")
                 body = issue.get('body') or 'Sin descripción'
                 f.write(f"{body}\n\n---\n\n")
 
@@ -264,8 +280,9 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
                         milestone_title = issue['milestone']
                     f.write(f"**Milestone:** {milestone_title}\n\n")
                 if issue.get('labels'):
-                    labels = [label.get('name', '') for label in issue['labels']]
-                    f.write(f"**Labels:** {', '.join(filter(None, labels))}\n\n")
+                    labels = format_labels(issue['labels'])
+                    if labels:
+                        f.write(f"**Labels:** {', '.join(labels)}\n\n")
                 body = issue.get('body') or 'Sin descripción'
                 f.write(f"{body}\n\n---\n\n")
 
