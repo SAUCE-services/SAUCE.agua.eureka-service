@@ -9,32 +9,90 @@ def generate_wiki_pages():
     repo = os.environ['GITHUB_REPOSITORY']
     api_url = f"https://api.github.com/repos/{repo}"
     headers = {
-        'Authorization': f'token {token}',
-        'Accept': 'application/vnd.github.v3+json'
+        'Authorization': f'Bearer {token}',
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'SAUCE-Wiki-Generator'
     }
 
-    def update_wiki_page(page_name, content):
-        # Codificar contenido en base64
-        content_bytes = content.encode('utf-8')
-        content_base64 = base64.b64encode(content_bytes).decode('utf-8')
+    print(f"Iniciando generación de Wiki para {repo}")
 
-        # Crear o actualizar página
+    # Verificar y habilitar Wiki
+    repo_response = requests.get(api_url, headers=headers)
+    if repo_response.status_code == 200:
+        repo_data = repo_response.json()
+        if not repo_data.get('has_wiki'):
+            print("Habilitando Wiki...")
+            enable_response = requests.patch(
+                api_url,
+                headers=headers,
+                json={'has_wiki': True}
+            )
+            if enable_response.status_code != 200:
+                print(f"Error habilitando wiki: {enable_response.status_code}")
+                print(enable_response.text)
+                return
+    else:
+        print(f"Error accediendo al repositorio: {repo_response.status_code}")
+        return
+
+    def update_wiki_page(page_name, content):
+        print(f"\nActualizando página: {page_name}")
+        wiki_url = f"https://api.github.com/repos/{repo}/wiki/{page_name}"
+        
+        print(f"URL de la Wiki: {wiki_url}")
+        print(f"Headers utilizados: {headers}")
+        
+        # Verificar si la wiki está habilitada antes de cada operación
+        repo_check = requests.get(api_url, headers=headers)
+        if not repo_check.json().get('has_wiki'):
+            print("Error: Wiki no está habilitada")
+            return
+
         data = {
             'message': f'Update {page_name}',
-            'content': content_base64,
-            'branch': 'master'  # La rama wiki por defecto
+            'content': content,
+            'name': page_name,
+            'sha': None
         }
 
-        # Intentar actualizar la página
+        get_response = requests.get(wiki_url, headers=headers)
+        print(f"GET response status: {get_response.status_code}")
+        if get_response.status_code == 200:
+            print("Página existente encontrada")
+            data['sha'] = get_response.json().get('sha')
+        elif get_response.status_code == 404:
+            print("Página nueva será creada")
+        else:
+            print(f"GET response inesperado: {get_response.text}")
+
+        print("Actualizando/creando página...")
         response = requests.put(
-            f"{api_url}/wiki/{page_name}",
+            wiki_url,
             headers=headers,
             json=data
         )
-        
-        if response.status_code not in [200, 201]:
-            print(f"Error updating {page_name}: {response.status_code}")
-            print(response.text)
+        print(f"PUT response status: {response.status_code}")
+        print(f"PUT response headers: {response.headers}")
+        print(f"PUT response body: {response.text}")
+
+    # Verificar existencia de archivos
+    if not os.path.exists('data/issues.json'):
+        print("Error: No se encontró el archivo issues.json")
+        return
+    if not os.path.exists('data/milestones.json'):
+        print("Error: No se encontró el archivo milestones.json")
+        return
+
+    # Verificar contenido de archivos
+    try:
+        with open('data/issues.json', 'r') as f:
+            issues = json.load(f)
+        with open('data/milestones.json', 'r') as f:
+            milestones = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"Error decodificando JSON: {e}")
+        return
 
     # Generar página principal
     home_content = """# SAUCE Agua Eureka Service Wiki
@@ -51,9 +109,6 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
     update_wiki_page('Home', home_content)
 
     # Generar página de Milestones
-    with open('data/milestones.json', 'r') as f:
-        milestones = json.load(f)
-    
     milestone_content = "# Milestones\n\n"
     for ms in milestones:
         milestone_content += f"## {ms['title']}\n"
@@ -66,9 +121,6 @@ Bienvenido a la Wiki del servicio Eureka de SAUCE Agua.
     update_wiki_page('Milestones', milestone_content)
 
     # Generar páginas de Issues
-    with open('data/issues.json', 'r') as f:
-        issues = json.load(f)
-    
     active_issues = [i for i in issues if i['state'] == 'open']
     closed_issues = [i for i in issues if i['state'] == 'closed']
     

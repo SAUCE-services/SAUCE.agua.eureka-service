@@ -12,10 +12,13 @@ on:
     types: [created, closed, edited, deleted]
 
 permissions:
-  contents: write    # Cambiado a write para poder actualizar la Wiki
+  contents: write
   pages: write
   id-token: write
   issues: read
+  administration: write  # Para modificar la configuración del repo
+  metadata: read        # Para acceder a la metadata del repo
+  wiki: write          # Permiso específico para la wiki
 
 jobs:
   build:
