@@ -11,14 +11,15 @@ on:
   milestone:
     types: [created, closed, edited, deleted]
 
+# Corregimos la sintaxis de los permisos
 permissions:
-  contents: write
-  pages: write
-  id-token: write
-  issues: read
-  administration: write  # Para modificar la configuración del repo
-  metadata: read        # Para acceder a la metadata del repo
-  wiki: write          # Permiso específico para la wiki
+  contents: write        # Para actualizar archivos
+  pages: write          # Para GitHub Pages
+  id-token: write       # Para autenticación
+  issues: read          # Para leer issues
+  actions: read         # Para acceder a las acciones
+  deployments: write    # Para despliegues
+  statuses: write       # Para actualizar estados
 
 jobs:
   build:
