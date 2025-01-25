@@ -43,6 +43,12 @@ jobs:
       - name: Generate Documentation
         run: |
           python scripts/generate_docs.py
+
+      - name: Generate Wiki
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/generate_wiki.py
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
