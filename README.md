@@ -21,11 +21,12 @@ Este servicio actúa como servidor de registro y descubrimiento para los microse
 
 ## Tecnologías
 
-- Spring Boot 3
-- Spring Cloud Netflix Eureka Server
-- Java 21
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-6DB33F?logo=spring&logoColor=white)](https://spring.io/projects/spring-cloud)
+[![Java](https://img.shields.io/badge/Java-21-007396?logo=java&logoColor=white)](https://www.oracle.com/java/technologies/javase/)
 
 ## Estado de Integración Continua
+
 [![SAUCE.agua.eureka-service CI](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml/badge.svg)](https://github.com/SAUCE-services/SAUCE.agua.eureka-service/actions/workflows/maven.yml)
 
 ## Configuración
